@@ -1,0 +1,25 @@
+<div class="login-container">
+  <h2>Login para cadastro de vacinas</h2>
+
+  <!-- Formulário para login -->
+  <form #loginForm="ngForm" (ngSubmit)="entrar()">
+    <label for="cpf">CPF</label>
+    <input id="cpf" type="text" name="cpf" [(ngModel)]="usuario.cpf" required>
+
+    <label for="nome">Nome</label>
+    <input id="nome" type="text" name="nome" [(ngModel)]="usuario.nome" required>
+
+    <label for="idade">Idade</label>
+    <input id="idade" type="number" name="idade" [(ngModel)]="usuario.idade" required>
+
+    <label for="sexo">Sexo</label>
+    <select id="sexo" name="sexo" [(ngModel)]="usuario.sexo" required>
+      <option value="">Selecione</option>
+      <option value="Masculino">Masculino</option>
+      <option value="Feminino">Feminino</option>
+    </select>
+
+    <!-- Botão só tem ação caso o form for válido -->
+    <button type="submit" [disabled]="!loginForm.form.valid">Entrar</button>
+  </form>
+</div>
