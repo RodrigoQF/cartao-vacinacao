@@ -1,64 +1,95 @@
-<div class="vacina-card-container">
+<div>
+  <div class="vacina-card-container">
 
     <!-- Informações cadastrais -->
     <div class="display justify">
-        <div class="display">
-            <p>Nome: </p>
-            <p class="field-box">Rodrigo</p>
-        </div>
+      <div class="display">
+        <p>Nome: </p>
+        <p class="field-box">{{usuario?.nome}}</p>
+      </div>
 
-        <div class="display">
-            <p>Idade: </p>
-            <p class="field-box">23</p>
-        </div>
+      <div class="display">
+        <p>Idade: </p>
+        <p class="field-box">{{usuario?.idade}}</p>
+      </div>
 
-        <div class="display">
-            <p>Sexo: </p>
-            <p class="field-box">Masculino</p>
-        </div>
+      <div class="display">
+        <p>Sexo: </p>
+        <p class="field-box">{{usuario?.sexo}}</p>
+      </div>
     </div>
 
     <!-- Informacoes da vacina -->
+    <h2> Suas vacinas</h2>
     <div class="vacina-card-container">
 
-        <div class="vacina-grid">
-            <div class="vacina-cell">
-                <span class="vacina-name">Febre Amarela</span>
-                <button class="vacina-info" (click)="abrirModal('info')">✎</button>
-            </div>
-            <div class="vacina-cell vazio">
-                <button class="vacina-adicionar" (click)="abrirModal('add')">+</button>
-            </div>
+      <!-- Disclaimer para caso cliente nao possua vacina -->
+      <div *ngIf="!possuiVacina" class="disclaimer">
+        Você não possúi nenhuma vacina registrada.
+      </div>
+
+      <div class="vacina-grid">
+        <!-- Lógica para exibir vacinas registradas -->
+        <div *ngFor="let vacina of cartaoVacina.vacinas" class="vacina-cell">
+          <span class="vacina-name">{{vacina.nome}}
+          </span>
+          <button class="vacina-info" (click)="abrirModalEditar('info', vacina)">✎</button>
         </div>
-    </div>
-</div>
-
-
-<!-- Modal informações-->
-<div *ngIf="tipoModal === 'info'" class="modal-overlay">
-  <div class="modal-content">
-    <h2>Detalhes da Vacina</h2>
-    <p><strong>Vacina:</strong> Febre Amarela</p>
-    <p><strong>Data da aplicação:</strong> 10/01/2025</p>
-    <p><strong>Dose:</strong> 1ª Dose</p>
-    <div style="text-align:right; margin-top:1rem;">
-      <button (click)="fecharModal()">Editar</button>
-      <button (click)="fecharModal()">Fechar</button>
+        <!-- Sempre após a lista de vacina irá exibir a opção de adicionar vacina -->
+        <div class="vacina-cell vazio">
+          <button class="vacina-adicionar" (click)="abrirModalAdicionar('add')">+</button>
+          <p>Adicionar vacina</p>
+        </div>
+      </div>
     </div>
   </div>
-</div>
 
-<!-- Modal adicionar-->
-<div *ngIf="tipoModal === 'add'" class="modal-overlay">
-  <div class="modal-content">
-    <h2>Adicionar Vacina</h2>
-    <form>
-      <input type="text" placeholder="Nome da vacina"><br><br>
-      <input type="date"><br><br>
-      <div style="text-align:right; margin-top:1rem;">
-        <button type="submit">Salvar</button>
-        <button type="button" (click)="fecharModal()">Cancelar</button>
+  <!-- Modal informações-->
+  <div *ngIf="tipoModal === 'info'" class="modal-overlay">
+    <div class="modal-content">
+      <h2>Detalhes da Vacina</h2>
+
+      <!-- Bloco para quando clicar em uma vacina -->
+      <div *ngIf="!editandoVacina">
+        <p><strong>Data da aplicação:</strong> {{ vacinaSelecionada.nome }}</p>
+        <p><strong>Data da aplicação:</strong> {{ vacinaSelecionada.data }}</p>
+        <p><strong>Quantidade de doses aplicadas:</strong> {{ vacinaSelecionada.dose }}</p>
+        <p><strong>Fabricante:</strong> {{ vacinaSelecionada.fabricante }}</p>
+        <div class="botoes-modal">
+          <button (click)="editarModal()">Editar</button>
+          <button (click)="fecharModal()">Fechar</button>
+          <button (click)="excluirVacina()">Excluir</button>
+        </div>
       </div>
-    </form>
+
+      <!-- Ao clicar em 'editar' os campos viram inputs -->
+      <div *ngIf="editandoVacina" style="display: grid;">
+        <input type="text" [(ngModel)]="vacinaSelecionada.nome">
+        <input type="date" [(ngModel)]="vacinaSelecionada.data">
+        <input type="text" [(ngModel)]="vacinaSelecionada.dose">
+        <input type="text" [(ngModel)]="vacinaSelecionada.fabricante">
+        <div class="botoes-modal">
+          <button (click)="salvarVacina()">Salvar</button>
+          <button (click)="fecharModal()">Fechar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal adicionar-->
+  <div *ngIf="tipoModal === 'add'" class="modal-overlay">
+    <div class="modal-content">
+      <h2>Adicionar Vacina</h2>
+      <form>
+        <input type="text" placeholder="Nome da vacina"><br><br>
+        <input type="date"><br><br>
+        <input type="text" placeholder="Quantidade de doses tomadas"><br><br>
+        <input type="text" placeholder="Fabricante da vacina"><br><br>
+        <div class="botoes-modal">
+          <button type="submit">Salvar</button>
+          <button type="button" (click)="fecharModal()">Cancelar</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>

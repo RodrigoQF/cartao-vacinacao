@@ -6,6 +6,7 @@
     padding: 1.5rem;
     transition: transform 0.2s ease-in-out;
     max-width: 1000px;
+    margin: 0 auto;      
 }
 
 .field-box {
@@ -115,4 +116,21 @@
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   width: 400px;
   max-width: 95%;
+}
+
+.botoes-modal{
+    text-align:right; margin-top:1rem
+}
+
+.disclaimer {
+  background: #fff3cd;        
+  border: 1px solid #ffeeba;   
+  color: #856404;            
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  position: relative;
 }
