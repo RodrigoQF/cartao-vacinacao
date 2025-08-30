@@ -1,0 +1,64 @@
+<div class="vacina-card-container">
+
+    <!-- Informações cadastrais -->
+    <div class="display justify">
+        <div class="display">
+            <p>Nome: </p>
+            <p class="field-box">Rodrigo</p>
+        </div>
+
+        <div class="display">
+            <p>Idade: </p>
+            <p class="field-box">23</p>
+        </div>
+
+        <div class="display">
+            <p>Sexo: </p>
+            <p class="field-box">Masculino</p>
+        </div>
+    </div>
+
+    <!-- Informacoes da vacina -->
+    <div class="vacina-card-container">
+
+        <div class="vacina-grid">
+            <div class="vacina-cell">
+                <span class="vacina-name">Febre Amarela</span>
+                <button class="vacina-info" (click)="abrirModal('info')">✎</button>
+            </div>
+            <div class="vacina-cell vazio">
+                <button class="vacina-adicionar" (click)="abrirModal('add')">+</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal informações-->
+<div *ngIf="tipoModal === 'info'" class="modal-overlay">
+  <div class="modal-content">
+    <h2>Detalhes da Vacina</h2>
+    <p><strong>Vacina:</strong> Febre Amarela</p>
+    <p><strong>Data da aplicação:</strong> 10/01/2025</p>
+    <p><strong>Dose:</strong> 1ª Dose</p>
+    <div style="text-align:right; margin-top:1rem;">
+      <button (click)="fecharModal()">Editar</button>
+      <button (click)="fecharModal()">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal adicionar-->
+<div *ngIf="tipoModal === 'add'" class="modal-overlay">
+  <div class="modal-content">
+    <h2>Adicionar Vacina</h2>
+    <form>
+      <input type="text" placeholder="Nome da vacina"><br><br>
+      <input type="date"><br><br>
+      <div style="text-align:right; margin-top:1rem;">
+        <button type="submit">Salvar</button>
+        <button type="button" (click)="fecharModal()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
