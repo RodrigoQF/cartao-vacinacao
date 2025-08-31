@@ -1,0 +1,136 @@
+.vacina-card-container {
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    transition: transform 0.2s ease-in-out;
+    max-width: 1000px;
+    margin: 0 auto;      
+}
+
+.field-box {
+    display: inline-block;
+    width: fit-content;
+    margin-top: 11px;
+    margin-left: 10px;
+    padding: 4px 16px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    background-color: #fff;
+    color: #333;
+    box-sizing: border-box;
+    transition: all 0.2s ease-in-out;
+}
+
+.display {
+    display: flex;
+}
+
+.justify {
+    display: flex;
+    justify-content: flex-start;
+    gap: 23px;
+}
+
+.vacina-card {
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    padding: 1.5rem;
+    margin-top: 1rem;
+}
+
+.vacina-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 12px;
+}
+
+.vacina-cell {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 1rem;
+    text-align: center;
+    position: relative;
+}
+
+.vacina-cell:hover {
+    transform: scale(1.05);
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.vacina-cell.vazio {
+    background: #c8e6c9;
+    border-color: #81c784;
+    padding: 20px;
+}
+
+.vacina-name {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.vacina-info {
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    opacity: 0.7;
+}
+
+.vacina-info:hover {
+    opacity: 1;
+}
+
+.vacina-adicionar {
+    text-align: center;
+    font-size: 28px;
+}
+
+.modal-overlay {
+  position: fixed; 
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.5); 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;    
+}
+
+.modal-content {
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  width: 400px;
+  max-width: 95%;
+}
+
+.botoes-modal{
+    text-align:right; margin-top:1rem
+}
+
+.disclaimer {
+  background: #fff3cd;        
+  border: 1px solid #ffeeba;   
+  color: #856404;            
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  margin: 1rem 0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  position: relative;
+}
