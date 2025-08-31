@@ -4,7 +4,7 @@ export const routes: Routes = [
     {path: '', pathMatch: 'full', redirectTo: 'login'},
     {
         path: 'login',
-        loadComponent: () => import('./modules/login-component/login-component').then((m) => m.LoginComponent)
+        loadComponent: () => import('./modules/login/login-component').then((m) => m.LoginComponent)
     },
     {
         path: 'cartao-vacina',
