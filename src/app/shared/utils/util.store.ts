@@ -4,11 +4,13 @@ import { Vacina } from "../models/vacinaModel";
 
 
 export interface State {
-    vacinaSelecionada: Vacina
+    vacinaSelecionada: Vacina,
+    erroAplicacao: boolean
 
 }
 const dadosCliente: State = {
-    vacinaSelecionada: new Vacina()
+    vacinaSelecionada: new Vacina(),
+    erroAplicacao: false
 }
 
 @Injectable({
