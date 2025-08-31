@@ -1,8 +1,8 @@
 <div class="login-container">
   <h2>Login para cadastro de vacinas</h2>
 
-  <!-- Formulário para login -->
-  <form #loginForm="ngForm" (ngSubmit)="entrar()">
+  <!-- Formulário para cadastro -->
+  <form *ngIf="!clienteCadastrado" #loginForm="ngForm" (ngSubmit)="cadastrar(loginForm)">
     <label for="cpf">CPF</label>
     <input id="cpf" type="text" name="cpf" [(ngModel)]="usuario.cpf" required>
 
@@ -20,6 +20,18 @@
     </select>
 
     <!-- Botão só tem ação caso o form for válido -->
-    <button type="submit" [disabled]="!loginForm.form.valid">Entrar</button>
+    <button type="submit" [disabled]="!loginForm.form.valid">Cadastrar</button>
+    <p (click)="possuiCadastro()" class="possui-cadastro">Já possui cadastro?</p>
   </form>
+
+  <!-- Formulário para login -->
+  <form *ngIf="clienteCadastrado" #loginForm="ngForm" (ngSubmit)="entrar(loginForm)">
+    <label for="cpf">CPF</label>
+    <input id="cpf" type="text" name="cpf" [(ngModel)]="usuario.cpf" required>
+
+    <!-- Botão só tem ação caso o form for válido -->
+    <button type="submit" [disabled]="!loginForm.form.valid">Entrar</button>
+    <p (click)="possuiCadastro()" class="possui-cadastro">Cadastrar</p>
+  </form>
+
 </div>
