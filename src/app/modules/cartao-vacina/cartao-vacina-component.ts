@@ -5,6 +5,7 @@ import { Vacina } from '../../shared/models/vacinaModel';
 import { Pessoa } from '../../shared/models/pessoaModel';
 import { CartaoVacinacaoResponse } from '../../shared/models/cartaoVacinaModel';
 import { MOCK_CARTAO } from '../../mocks/cartaoVacinaResponseMock';
+import { Store } from '../../shared/utils/util.store';
 
 @Component({
   selector: 'app-cartao-vacina-component',
@@ -36,6 +37,8 @@ export class CartaoVacinaComponent implements OnInit {
     fabricante: ''
   };
 
+  constructor(private store: Store){}
+
   ngOnInit(): void {
     //Variavel principal recebe valor da API que retorna informacoes do cliente
     this.cartaoVacina = MOCK_CARTAO;
@@ -49,6 +52,7 @@ export class CartaoVacinaComponent implements OnInit {
 
   abrirModalEditar(modal: 'info' | 'add', vacina: Vacina) {
     this.vacinaSelecionada = vacina;
+    this.store.set("vacinaSelecionada", this.vacinaSelecionada)
     this.tipoModal = modal;
   }
 

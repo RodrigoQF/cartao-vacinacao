@@ -5,10 +5,10 @@ export type Dose =
   | 'Reforço'
   | 'Dose Única';
 
-export interface Vacina {
-  id: string;                 
-  nome: string;            
-  data: string;          
-  dose: Dose;
-  fabricante: string;
+export class Vacina {
+  id?: string;                 
+  nome?: string;            
+  data?: string;          
+  dose?: Dose;
+  fabricante?: string;
 }
