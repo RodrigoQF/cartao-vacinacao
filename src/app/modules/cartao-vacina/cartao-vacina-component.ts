@@ -22,7 +22,7 @@ export class CartaoVacinaComponent implements OnInit {
   editandoVacina: boolean = false;
 
   cartaoVacina!: CartaoVacinacaoResponse;
-  usuario: Pessoa | null = null;
+  usuario?: Pessoa = {};
   vacinas: Vacina[] = [];
 
   //Variavel usada para identificar se cliente possui ou nao vacinas
@@ -41,10 +41,10 @@ export class CartaoVacinaComponent implements OnInit {
 
   ngOnInit(): void {
     //Variavel principal recebe valor da API que retorna informacoes do cliente
-    this.cartaoVacina = MOCK_CARTAO;
+    this.cartaoVacina = this.store.value.vacinaResponse;
 
     //Valida se cliente tem ou nao vacina registrada, para exibicao ou nao do disclaimer
-    this.possuiVacina = this.cartaoVacina.vacinas.length > 0;
+    this.possuiVacina = this.cartaoVacina.vacinas!.length > 0;
 
     //Popula a variavel usuario para exibir na ficha da vacina
     this.usuario = this.cartaoVacina.pessoa;

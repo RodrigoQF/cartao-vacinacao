@@ -1,16 +1,25 @@
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
 import { Vacina } from "../models/vacinaModel";
+import { Pessoa } from "../models/pessoaModel";
+import { ParseSourceFile } from "@angular/compiler";
+import { CartaoVacinacaoResponse } from "../models/cartaoVacinaModel";
+import { CartaoVacinaComponent } from "../../modules/cartao-vacina/cartao-vacina-component";
 
 
 export interface State {
     vacinaSelecionada: Vacina,
-    erroAplicacao: boolean
+    erroAplicacao: boolean,
+    clienteCadastro: Pessoa,
+    vacinaResponse: CartaoVacinacaoResponse
+
 
 }
 const dadosCliente: State = {
     vacinaSelecionada: new Vacina(),
-    erroAplicacao: false
+    erroAplicacao: false,
+    clienteCadastro: new Pessoa(),
+    vacinaResponse: new CartaoVacinacaoResponse()
 }
 
 @Injectable({
