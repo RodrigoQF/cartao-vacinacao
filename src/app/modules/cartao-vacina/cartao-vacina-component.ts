@@ -1,21 +1,22 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { Vacina } from '../../shared/models/vacinaModel';
 import { Pessoa } from '../../shared/models/pessoaModel';
 import { CartaoVacinacaoResponse } from '../../shared/models/cartaoVacinaModel';
 import { MOCK_CARTAO } from '../../mocks/cartaoVacinaResponseMock';
 import { Store } from '../../shared/utils/util.store';
+import { VacinaService } from '../../service/vacina.service';
+import { LoaderService } from '../../service/loader.service';
 
 @Component({
   selector: 'app-cartao-vacina-component',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './cartao-vacina-component.html',
-  styleUrl: './cartao-vacina-component.scss'
+  styleUrl: './cartao-vacina-component.scss',
 })
 export class CartaoVacinaComponent implements OnInit {
-
   tipoModal: 'info' | 'add' | null = null;
 
   //Variavel usada ao clicar no botão 'editar'
@@ -34,10 +35,14 @@ export class CartaoVacinaComponent implements OnInit {
     nome: '',
     data: '',
     dose: '1ª Dose',
-    fabricante: ''
+    fabricante: '',
   };
 
-  constructor(private store: Store){}
+  constructor(
+    private store: Store,
+    private vacinaService: VacinaService,
+    private loaderService: LoaderService
+  ) {}
 
   ngOnInit(): void {
     //Variavel principal recebe valor da API que retorna informacoes do cliente
@@ -52,7 +57,7 @@ export class CartaoVacinaComponent implements OnInit {
 
   abrirModalEditar(modal: 'info' | 'add', vacina: Vacina) {
     this.vacinaSelecionada = vacina;
-    this.store.set("vacinaSelecionada", this.vacinaSelecionada)
+    this.store.set('vacinaSelecionada', this.vacinaSelecionada);
     this.tipoModal = modal;
   }
 
@@ -63,19 +68,43 @@ export class CartaoVacinaComponent implements OnInit {
   fecharModal() {
     this.tipoModal = null;
     this.editandoVacina = false;
-
   }
 
   editarModal() {
     this.editandoVacina = true;
   }
 
-  salvarVacina() {
-    this.editandoVacina = true;
+  atualizarVacina(form: NgForm) {
+    this.editandoVacina = false;
     this.tipoModal = null;
+    this.loaderService.show();
+    this.vacinaService.atualizarVacina(this.vacinaSelecionada?.id!, form.value, this.usuario?.cpf!).subscribe({
+      next: (resp) => {
+        this.cartaoVacina = resp;
+        this.loaderService.hide();
+      },
+    });
   }
 
-  excluirVacina(){
+  excluirVacina() {
+    this.tipoModal = null;
+    this.loaderService.show();
+    this.vacinaService.deletarVacina(this.vacinaSelecionada, this.usuario?.cpf!).subscribe({
+      next: (resp) => {
+        this.cartaoVacina = resp;
+        this.loaderService.hide();
+      },
+    });
+  }
 
+  adicionarVacina(form: NgForm) {
+    this.loaderService.show();
+    this.tipoModal = null;
+    this.vacinaService.adicionarVacina(form.value, this.usuario?.cpf!).subscribe({
+      next: (resp) => {
+        this.cartaoVacina = resp;
+        this.loaderService.hide();
+      },
+    });
   }
 }

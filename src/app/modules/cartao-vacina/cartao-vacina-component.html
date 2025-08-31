@@ -57,21 +57,23 @@
         <p><strong>Fabricante:</strong> {{ vacinaSelecionada.fabricante }}</p>
         <div class="botoes-modal">
           <button (click)="editarModal()">Editar</button>
-          <button (click)="fecharModal()">Fechar</button>
           <button (click)="excluirVacina()">Excluir</button>
+          <button (click)="fecharModal()">Fechar</button>
         </div>
       </div>
 
       <!-- Ao clicar em 'editar' os campos viram inputs -->
       <div *ngIf="editandoVacina" style="display: grid;">
-        <input type="text" [(ngModel)]="vacinaSelecionada.nome">
-        <input type="date" [(ngModel)]="vacinaSelecionada.data">
-        <input type="text" [(ngModel)]="vacinaSelecionada.dose">
-        <input type="text" [(ngModel)]="vacinaSelecionada.fabricante">
+        <form #vacinaForm="ngForm" (ngSubmit)="atualizarVacina(vacinaForm)">
+        <input type="text" required name="nome" [(ngModel)]="vacinaSelecionada.nome">
+        <input type="date" required name="data" [(ngModel)]="vacinaSelecionada.data">
+        <input type="text" required name="dose" [(ngModel)]="vacinaSelecionada.dose">
+        <input type="text" required name="fabricante" [(ngModel)]="vacinaSelecionada.fabricante">
         <div class="botoes-modal">
-          <button (click)="salvarVacina()">Salvar</button>
-          <button (click)="fecharModal()">Fechar</button>
+          <button type="submit" [disabled]="!vacinaForm.form.valid">Salvar</button>
+          <button type="button" (click)="fecharModal()">Fechar</button>
         </div>
+        </form>
       </div>
     </div>
   </div>
@@ -80,13 +82,20 @@
   <div *ngIf="tipoModal === 'add'" class="modal-overlay">
     <div class="modal-content">
       <h2>Adicionar Vacina</h2>
-      <form>
-        <input type="text" placeholder="Nome da vacina"><br><br>
-        <input type="date"><br><br>
-        <input type="text" placeholder="Quantidade de doses tomadas"><br><br>
-        <input type="text" placeholder="Fabricante da vacina"><br><br>
+      <form #vacinaForm="ngForm" (ngSubmit)="adicionarVacina(vacinaForm)">
+        <input type="text" name="nome" placeholder="Nome da vacina" ngModel required><br><br>
+        <input type="date" name="data" ngModel required><br><br>
+            <select id="dose" name="dose" ngModel required>
+              <option value="">Quantidade de doses tomadas</option>
+              <option value="1">1ª Dose</option>
+              <option value="1">2ª Dose</option>
+              <option value="3">3ª Dose</option>
+              <option value="4">Reforço</option>
+              <option value="5">Dose Única</option>
+            </select><br><br>
+        <input type="text" name="fabricante" placeholder="Fabricante da vacina" ngModel required><br><br>
         <div class="botoes-modal">
-          <button type="submit">Salvar</button>
+          <button type="submit" [disabled]="!vacinaForm.form.valid">Salvar</button>
           <button type="button" (click)="fecharModal()">Cancelar</button>
         </div>
       </form>

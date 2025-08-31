@@ -1,6 +1,6 @@
 import { CartaoVacinacaoResponse } from '../shared/models/cartaoVacinaModel';
 
-export const MOCK_CARTAO: CartaoVacinacaoResponse = {
+export const MOCK_CARTAO_DELETAR: CartaoVacinacaoResponse = {
   pessoa: {
     id: '001',
     cpf: '12345678900',
@@ -15,13 +15,6 @@ export const MOCK_CARTAO: CartaoVacinacaoResponse = {
       data: '2025-01-10',
       dose: '1ª Dose',
       fabricante: 'AstraZeneca',
-    },
-    {
-      id: 'v2',
-      nome: 'Covid',
-      data: '2025-01-10',
-      dose: '2ª Dose',
-      fabricante: 'Pfizer',
     },
   ],
 };
