@@ -1,6 +1,39 @@
 # CartaoVacinacao
 
+Para rodar a aplicação local
+- Versão node 20.19+
+- Após baixar a aplicacao
+- npm i
+- npm run build
+- npm run start
+- *-* Para rodar com mocks, descomentar as linhas (20,33 e 48) do arquivo vacina.service.ts / descomentar as linhas (16 e 28) do arquivo cliente.service.ts
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1.
+
+
+Layout tela cadastro
+![alt text](image-1.png)
+
+Layout tela de login
+![alt text](image-2.png)
+
+Cartão de vacinação caso não possua vacina cadastrada
+![alt text](image-3.png)
+
+Cartão de vacinação com vacinas
+![alt text](image-5.png)
+
+Informações ao selecionar uma vacina cadastrada
+![alt text](image-6.png)
+
+Modal ao editar uma vacina já existente
+![alt text](image-7.png)
+
+Adicionar vacina
+![alt text](image-8.png)
+
+Tela de exceção
+![alt text](image-4.png)
 
 ## Development server
 
@@ -9,7 +42,6 @@ To start a local development server, run:
 ```bash
 ng serve
 ```
-
 Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
 ## Code scaffolding

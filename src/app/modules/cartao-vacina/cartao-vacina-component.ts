@@ -102,6 +102,7 @@ export class CartaoVacinaComponent implements OnInit {
     this.tipoModal = null;
     this.vacinaService.adicionarVacina(form.value, this.usuario?.cpf!).subscribe({
       next: (resp) => {
+        this.possuiVacina = true;
         this.cartaoVacina = resp;
         this.loaderService.hide();
       },
