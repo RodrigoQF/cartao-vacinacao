@@ -1,0 +1,19 @@
+.error-box {
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 1rem;
+  border-radius: 6px;
+  margin: 1rem 0;
+  font-size: 0.95rem;
+}
+.error-box h3 {
+  margin: 0 0 0.5rem 0;
+}
+.error-box pre {
+  background: #f1f1f1;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  overflow-x: auto;
+}

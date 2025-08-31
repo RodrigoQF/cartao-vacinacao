@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-    {path: '', pathMatch: 'full', redirectTo: 'login'},
+    { path: '', pathMatch: 'full', redirectTo: 'login' },
     {
         path: 'login',
         loadComponent: () => import('./modules/login/login-component').then((m) => m.LoginComponent)
@@ -9,5 +9,9 @@ export const routes: Routes = [
     {
         path: 'cartao-vacina',
         loadComponent: () => import('./modules/cartao-vacina/cartao-vacina-component').then((m) => m.CartaoVacinaComponent)
+    },
+    {
+        path: 'pagina-erro',
+        loadComponent: () => import('./shared/errors/erros-generico/erros-component').then((m) => m.ErrosComponent)
     }
 ];
