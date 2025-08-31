@@ -17,7 +17,7 @@ export class VacinaService {
   constructor(private http: HttpClient) {}
 
   adicionarVacina(vacina: Vacina, cpf: string): Observable<CartaoVacinacaoResponse> {
-    return of(MOCK_CARTAO_ADICIONAR as unknown as CartaoVacinacaoResponse).pipe(delay(500));
+    // return of(MOCK_CARTAO_ADICIONAR as unknown as CartaoVacinacaoResponse).pipe(delay(500));
     let body = {
         nome: vacina.nome,           
         data: vacina.data,          
@@ -30,7 +30,7 @@ export class VacinaService {
   }
 
   atualizarVacina(idVacina: string, vacina: Vacina, cpf: string): Observable<CartaoVacinacaoResponse> {
-    return of(MOCK_CARTAO_ATUALIZAR as unknown as CartaoVacinacaoResponse).pipe(delay(500));
+    // return of(MOCK_CARTAO_ATUALIZAR as unknown as CartaoVacinacaoResponse).pipe(delay(500));
 
     let body = {
         id: idVacina,                 
@@ -45,7 +45,7 @@ export class VacinaService {
   }
 
   deletarVacina(vacina: Vacina, cpf: string): Observable<CartaoVacinacaoResponse> {
-    return of(MOCK_CARTAO_DELETAR as unknown as CartaoVacinacaoResponse).pipe(delay(500));
+    // return of(MOCK_CARTAO_DELETAR as unknown as CartaoVacinacaoResponse).pipe(delay(500));
 
     let body = {
       cpf: cpf,
