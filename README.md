@@ -7,6 +7,7 @@ Para rodar a aplicação local
 - npm run build
 - npm run start
 - *-* Para rodar com mocks, descomentar as linhas (20,33 e 48) do arquivo vacina.service.ts / descomentar as linhas (16 e 28) do arquivo cliente.service.ts
+- Caso queira rodar o projeto integrado FED - BFF, basta seguir as instruções do projeto https://github.com/RodrigoQF/cartao-vacinacao-bff
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.2.1.
 
