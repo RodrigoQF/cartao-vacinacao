@@ -91,6 +91,7 @@ export class CartaoVacinaComponent implements OnInit {
     this.loaderService.show();
     this.vacinaService.deletarVacina(this.vacinaSelecionada, this.usuario?.cpf!).subscribe({
       next: (resp) => {
+        this.possuiVacina = resp.vacinas!.length > 0;
         this.cartaoVacina = resp;
         this.loaderService.hide();
       },
